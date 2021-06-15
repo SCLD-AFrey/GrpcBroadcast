@@ -1,14 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcBroadcast.Common", "GrpcBroadcast.Common\GrpcBroadcast.Common.csproj", "{12097EE5-6D73-438B-A43F-A4E966B3BDAA}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31205.134
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcBroadcast.Common", "GrpcBroadcast.Common\GrpcBroadcast.Common.csproj", "{12097EE5-6D73-438B-A43F-A4E966B3BDAA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcBroadcast.Server.Core", "GrpcBroadcast.Server.Core\GrpcBroadcast.Server.Core.csproj", "{6B9314EF-9685-4D7E-9D5A-12742F1A89AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcBroadcast.Server.Core", "GrpcBroadcast.Server.Core\GrpcBroadcast.Server.Core.csproj", "{6B9314EF-9685-4D7E-9D5A-12742F1A89AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcBroadcast.Client.Core", "GrpcBroadcast.Client.Core\GrpcBroadcast.Client.Core.csproj", "{69616CC5-C2FA-4EE5-BA2E-8FB8313827FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcBroadcast.Client.Core", "GrpcBroadcast.Client.Core\GrpcBroadcast.Client.Core.csproj", "{69616CC5-C2FA-4EE5-BA2E-8FB8313827FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Server", "Example.Server\Example.Server.csproj", "{6CA7E689-D186-46AE-B418-AD0AA5439701}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.Server", "Example.Server\Example.Server.csproj", "{6CA7E689-D186-46AE-B418-AD0AA5439701}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Client.Console", "Example.Client.Console\Example.Client.Console.csproj", "{6A6E4492-68F3-4F93-B852-7ABFD804C268}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.Client.Console", "Example.Client.Console\Example.Client.Console.csproj", "{6A6E4492-68F3-4F93-B852-7ABFD804C268}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Client.WpfDxMvvm", "Example.Client.WpfDxMvvm\Example.Client.WpfDxMvvm.csproj", "{77DFBB74-D018-4016-ADF7-61C73AE5B742}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -36,5 +41,15 @@ Global
 		{6A6E4492-68F3-4F93-B852-7ABFD804C268}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A6E4492-68F3-4F93-B852-7ABFD804C268}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A6E4492-68F3-4F93-B852-7ABFD804C268}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77DFBB74-D018-4016-ADF7-61C73AE5B742}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77DFBB74-D018-4016-ADF7-61C73AE5B742}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77DFBB74-D018-4016-ADF7-61C73AE5B742}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77DFBB74-D018-4016-ADF7-61C73AE5B742}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CEECB025-A1D3-46D6-8516-0D0155B624EF}
 	EndGlobalSection
 EndGlobal
