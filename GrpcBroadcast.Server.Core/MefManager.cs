@@ -2,7 +2,7 @@
 using System.IO;
 using System.Reflection;
 
-namespace GrpcBroadcast.Server
+namespace GrpcBroadcast.Server.Core
 {
     public class MefManager
     {

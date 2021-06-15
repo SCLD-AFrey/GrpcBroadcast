@@ -4,7 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Grpc.Core;
 
-namespace GrpcBroadcast.Client
+namespace GrpcBroadcast.Client.Core
 {
     public static class IAsyncStreamReaderExtensions
     {

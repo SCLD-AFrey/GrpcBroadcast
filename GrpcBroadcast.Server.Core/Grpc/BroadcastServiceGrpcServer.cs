@@ -5,10 +5,10 @@ using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Grpc.Core.Interceptors;
 using GrpcBroadcast.Common;
-using GrpcBroadcast.Server.Infrastructure;
-using GrpcBroadcast.Server.Model;
+using GrpcBroadcast.Server.Core.Infrastructure;
+using GrpcBroadcast.Server.Core.Model;
 
-namespace GrpcBroadcast.Server.Rpc
+namespace GrpcBroadcast.Server.Core.Rpc
 {
     public class NoticationServiceGrpcServer
     {

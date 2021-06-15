@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
-        <RootNamespace>GrpcBroadcast.Client</RootNamespace>
+        <RootNamespace>GrpcBroadcast.Client.Core</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>

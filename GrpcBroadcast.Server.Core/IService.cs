@@ -1,4 +1,4 @@
-﻿namespace GrpcBroadcast.Server
+﻿namespace GrpcBroadcast.Server.Core
 {
     public interface IService
     {

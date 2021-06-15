@@ -2,10 +2,10 @@
 using System.ComponentModel.Composition;
 using System.Reactive.Linq;
 using GrpcBroadcast.Common;
-using GrpcBroadcast.Server.Infrastructure;
-using GrpcBroadcast.Server.Model;
+using GrpcBroadcast.Server.Core.Infrastructure;
+using GrpcBroadcast.Server.Core.Model;
 
-namespace GrpcBroadcast.Server.Model
+namespace GrpcBroadcast.Server.Core.Model
 {
     [Export]
     public class BroadcastService

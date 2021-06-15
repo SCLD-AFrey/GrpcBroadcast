@@ -6,7 +6,7 @@ using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using GrpcBroadcast.Common;
 
-namespace GrpcBroadcast.Client
+namespace GrpcBroadcast.Client.Core
 {
     public class BroadcastServiceClient
     {

@@ -4,9 +4,9 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Grpc.Core.Interceptors;
-using GrpcBroadcast.Server.Infrastructure;
+using GrpcBroadcast.Server.Core.Infrastructure;
 
-namespace GrpcBroadcast.Server.Rpc
+namespace GrpcBroadcast.Server.Core.Rpc
 {
     public class IpAddressAuthenticator : Interceptor
     {

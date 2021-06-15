@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using GrpcBroadcast.Common;
-using GrpcBroadcast.Server.Model;
+using GrpcBroadcast.Server.Core.Model;
 
-namespace GrpcBroadcast.Server.Persistence
+namespace GrpcBroadcast.Server.Core.Persistence
 {
     [Export(typeof(IBroadcastLogRepository))]
     public class BroadcastLogRepository : IBroadcastLogRepository

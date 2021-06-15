@@ -6,7 +6,7 @@ using System.Reactive.Linq;
 using System.Reactive.Subjects;
 using System.Runtime.CompilerServices;
 
-namespace GrpcBroadcast.Server.Infrastructure
+namespace GrpcBroadcast.Server.Core.Infrastructure
 {
     [Export]
     public class Logger
