@@ -1,0 +1,20 @@
+﻿syntax = "proto3";
+
+// well known types
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/empty.proto";
+
+option csharp_namespace = "GrpcBroadcast.Common";
+
+package GrpcBroadcast.Common;
+
+service Broadcast {
+  rpc Write(BroadcastLog) returns (google.protobuf.Empty) {}
+  rpc Subscribe(google.protobuf.Empty) returns (stream BroadcastLog) {}
+}
+
+message BroadcastLog {
+  string originId = 1;
+  string content = 2;
+  google.protobuf.Timestamp at = 3;
+}
