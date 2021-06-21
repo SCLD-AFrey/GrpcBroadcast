@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Example.Client.WpfDxMvvm
+namespace Example.Client.Wpf
 {
     public class Person
     {

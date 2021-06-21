@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.Client.Console", "E
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Client.WpfDxMvvm", "Example.Client.WpfDxMvvm\Example.Client.WpfDxMvvm.csproj", "{77DFBB74-D018-4016-ADF7-61C73AE5B742}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleData", "..\SampleData\SampleData\SampleData.csproj", "{764EB81A-3CAE-4FDA-AABC-ED30403BB6B7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{77DFBB74-D018-4016-ADF7-61C73AE5B742}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77DFBB74-D018-4016-ADF7-61C73AE5B742}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77DFBB74-D018-4016-ADF7-61C73AE5B742}.Release|Any CPU.Build.0 = Release|Any CPU
+		{764EB81A-3CAE-4FDA-AABC-ED30403BB6B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{764EB81A-3CAE-4FDA-AABC-ED30403BB6B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{764EB81A-3CAE-4FDA-AABC-ED30403BB6B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{764EB81A-3CAE-4FDA-AABC-ED30403BB6B7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

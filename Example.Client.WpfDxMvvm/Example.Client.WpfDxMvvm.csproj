@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -17,6 +17,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\SampleData\SampleData\SampleData.csproj" />
     <ProjectReference Include="..\GrpcBroadcast.Client.Core\GrpcBroadcast.Client.Core.csproj" />
     <ProjectReference Include="..\GrpcBroadcast.Common\GrpcBroadcast.Common.csproj" />
   </ItemGroup>   

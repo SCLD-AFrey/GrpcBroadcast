@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net.Http.Json;
@@ -17,6 +18,8 @@ using GrpcBroadcast.Client.Core;
 using GrpcBroadcast.Common;
 using System.Text.Json;
 using Newtonsoft.Json;
+using SampleData;
+using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace Example.Client.WpfDxMvvm.ViewModels
 {
@@ -30,8 +33,8 @@ namespace Example.Client.WpfDxMvvm.ViewModels
             {
                 p_builder.CommandFromMethod(p_x => p_x.OnLockPersonScriptCommand())
                     .CommandName("LockPersonScriptCommand");
-                // p_builder.CommandFromMethod(p_x => p_x.OnUpdatePersonScriptCommand())
-                //     .CommandName("UpdatePersonScriptCommand");
+                p_builder.CommandFromMethod(p_x => p_x.OnUpdatePersonScriptCommand())
+                    .CommandName("UpdatePersonScriptCommand");
                 p_builder.Property(p_x => p_x.SelectedPerson)
                     .OnPropertyChangedCall(p_x => p_x.OnSelectedPersonChanged());
             }
@@ -41,24 +44,24 @@ namespace Example.Client.WpfDxMvvm.ViewModels
 
         protected MainViewModel()
         {
+            uow = new UnitOfWork()
+            {
+                ConnectionString =
+                    "XpoProvider=MSSqlServer;data source=(localdb)\\MSSQLLocalDB;integrated security=SSPI;initial catalog=SampleData",
+                AutoCreateOption = AutoCreateOption.DatabaseAndSchema
+            };
+            PersonCollectionDb = new XPCollection<SampleData.Person>(uow);
             PersonCollection = new ObservableCollection<Person>();
             BroadcastHistory = new ObservableCollection<string>();
             CommandLine = string.Empty;
             IsReadOnly = false;
             CheckTime = DateTime.UtcNow;
+            ClearHistory = false;
 
-            // ADD PEOPLE
-            PersonCollection.Add(new Person(1, "Arthur", "Frey", DateTime.Parse("8/7/1973"), "3043596538", false));
-            PersonCollection.Add(new Person(1, "Alyssa", "Frey", DateTime.Parse("3/13/1985"), "3043596539", false));
-            PersonCollection.Add(new Person(1, "Fyl", "Frey", DateTime.Parse("10/01/2019"), "", false));
-            PersonCollection.Add(new Person(1, "Astrid", "Frey", DateTime.Parse("10/04/2020"), "", false));
-            PersonCollection.Add(new Person(1, "Erik", "Frey", DateTime.Parse("10/01/2019"), "", false));
-            //-----
-            
-            
-            
+            LoadData();
+
             BindingOperations.EnableCollectionSynchronization(BroadcastHistory, m_broadcastHistoryLockObject);
-            StartReadingBroadcastServer();
+            isConnected = StartReadingBroadcastServer();
 
         }
 
@@ -71,6 +74,8 @@ namespace Example.Client.WpfDxMvvm.ViewModels
 
         #region Fields and Properties
 
+        public virtual UnitOfWork uow { get; set; }
+        public virtual XPCollection<SampleData.Person> PersonCollectionDb { get; set; } 
         public virtual ObservableCollection<Person> PersonCollection { get; set; }
         public virtual Person SelectedPerson { get; set; }
         public virtual string CommandLine { get; set; }
@@ -78,7 +83,9 @@ namespace Example.Client.WpfDxMvvm.ViewModels
         public virtual bool IsReadOnly { get; set; }
         public virtual bool IsNotReadOnly { get; set; }
         public virtual DateTime CheckTime { get; set; }
-
+        public virtual bool ClearHistory { get; set; }
+        public virtual bool isConnected { get; set; }
+        
         private readonly object m_broadcastHistoryLockObject = new();
         private static readonly BroadcastServiceClient m_broadcastService = new();
         private static string m_originId = Guid.NewGuid().ToString();
@@ -92,10 +99,10 @@ namespace Example.Client.WpfDxMvvm.ViewModels
             IsReadOnly = SelectedPerson.IsLocked;
             IsNotReadOnly = !IsReadOnly;
         }
-        // public void OnUpdatePersonScriptCommand()
-        // {
-        //     m_broadcastService.WriteCommandExecute("UPDATE NOT HANDLED YET", m_originId);
-        // }
+        public void OnUpdatePersonScriptCommand()
+        {
+            m_broadcastService.WriteCommandExecute($"UPDATE {JsonSerializer.Serialize(SelectedPerson)}", m_originId);
+        }
         public void OnLockPersonScriptCommand()
         {
             SelectedPerson.IsLocked = !SelectedPerson.IsLocked;
@@ -103,19 +110,47 @@ namespace Example.Client.WpfDxMvvm.ViewModels
         }
 
 
-        private void StartReadingBroadcastServer()
+        private bool StartReadingBroadcastServer()
         {
-            var cts = new CancellationTokenSource();
-            _ = m_broadcastService.BroadcastLogs()
-                .ForEachAsync(
-                    p_x => ProcessCommand(p_x.At, p_x.OriginId, p_x.Content),
-                    cts.Token);
+            try
+            {
+                var cts = new CancellationTokenSource();
+                _ = m_broadcastService.BroadcastLogs()
+                    .ForEachAsync(
+                        p_x => ProcessCommand(p_x.At, p_x.OriginId, p_x.Content),
+                        cts.Token);
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+        }
+
+        private void LoadData()
+        {
+            foreach (var p in PersonCollectionDb)
+            {
+               PersonCollection.Add(new Person()
+               {
+                   PersonId = p.Oid,
+                   FirstName = p.FirstName,
+                   LastName = p.LastName,
+                   Dob = p.DOB,
+                   PhoneNumber = p.PhoneNumber,
+                   IsLocked = p.IsLocked
+               }); 
+            }
         }
 
         private void ProcessCommand(Timestamp p_at, string p_originId, string p_content)
         {
             CommandLine = $"{p_content} @ {p_at.ToDateTime().ToString("HH:mm:ss")} by {p_originId}" ;
-            //BroadcastHistory.Clear();
+            if (ClearHistory)
+            {
+                BroadcastHistory.Clear();
+            }
             if (CheckTime < p_at.ToDateTime() && p_originId != m_originId)
             {
 

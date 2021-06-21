@@ -9,6 +9,7 @@
     xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
     xmlns:dxprg="http://schemas.devexpress.com/winfx/2008/xaml/propertygrid"
     xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
     DataContext="{dxmvvm:ViewModelSource Type=ViewModels:MainViewModel}">
    <Grid>
         <Grid.ColumnDefinitions>
@@ -50,11 +51,15 @@
         </dxprg:PropertyGridControl>
         
         <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
-            <!-- <dx:SimpleButton Content="Update" IsEnabled="{Binding Path=IsReadOnly}" Command="{Binding UpdatePersonScriptCommand}" /> -->
+            <dx:SimpleButton Content="Commit" IsEnabled="{Binding Path=IsReadOnly}" Command="{Binding CommitPersonScriptCommand}" />
             <dx:SimpleButton Content="Lock" IsEnabled="{Binding Path=IsNotReadOnly}" Command="{Binding LockPersonScriptCommand}" />
             <dx:SimpleButton Content="UnLock" IsEnabled="{Binding Path=IsReadOnly}" Command="{Binding LockPersonScriptCommand}" />
+            <dxe:CheckEdit IsChecked="{Binding ClearHistory}"  Content="Clear Old Entries"/>
+            <TextBlock Text="Is Connected?"/>
+            <TextBlock Text="{Binding isConnected}"/>
         </StackPanel>
-        
+       
+       
         <TextBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Text="{Binding CommandLine}"/>
         <ListBox Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="3" x:Name="History"  ItemsSource="{Binding BroadcastHistory}" />
         
