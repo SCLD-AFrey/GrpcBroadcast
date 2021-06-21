@@ -11,7 +11,6 @@ namespace GrpcBroadcast.Client.Core
         /// <summary>
         ///     Convert IAsyncStreamReader to IAsyncEnumerable.
         /// </summary>
-        /// <remarks>https://github.com/grpc/grpc/issues/6776</remarks>
         /// <typeparam name="T">sequence type</typeparam>
         /// <param name="asyncStreamReader">source IAsyncStreamReader</param>
         /// <returns>converted IAsyncEnumerable</returns>
