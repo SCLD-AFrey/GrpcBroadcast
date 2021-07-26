@@ -15,8 +15,7 @@ namespace GrpcBroadcast.Client.Core
         public BroadcastServiceClient()
         {
             m_client = new Broadcast.BroadcastClient(
-                new Channel("localhost", 50052, ChannelCredentials.Insecure)
-                );
+                new Channel("localhost", 50052, ChannelCredentials.Insecure));
         }
 
         public async Task Write(BroadcastLog broadcastLog)

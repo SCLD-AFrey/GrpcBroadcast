@@ -18,6 +18,7 @@ namespace GrpcBroadcast.Server.Core.Rpc
             private const int Port = 50052;
             private readonly Empty m_empty = new();
             private readonly Grpc.Core.Server m_server;
+            private ServerPort m_serverport;
 
             [Import] private Logger m_logger;
 
@@ -28,6 +29,8 @@ namespace GrpcBroadcast.Server.Core.Rpc
                 // Locate required files and set true to enable SSL
                 //var secure = false;
 
+                m_serverport = new ServerPort("localhost", Port, ServerCredentials.Insecure);
+                
                 m_server = new Grpc.Core.Server
                 {
                     Services =
@@ -37,7 +40,7 @@ namespace GrpcBroadcast.Server.Core.Rpc
                     },
                     Ports =
                     {
-                        new ServerPort("localhost", Port, ServerCredentials.Insecure)
+                        m_serverport
                     }
                 };
             }
